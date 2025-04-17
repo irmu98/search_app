@@ -1,0 +1,22 @@
+import 'package:search_app/data/model/photo.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'search_photo_state.freezed.dart';
+
+// ignore_for_file: annotate_overrides
+@freezed
+class SearchPhotoState with _$SearchPhotoState {
+  final List<Photo> photos;
+
+  final List<Photo> searchPhotos;
+
+  final bool isLoading;
+  final String searchString;
+
+  const SearchPhotoState({
+    this.photos = const [],
+    this.searchPhotos = const [],
+    this.isLoading = false,
+    this.searchString = '',
+  });
+}
