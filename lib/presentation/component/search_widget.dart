@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:search_app/core/color_styles.dart';
+import 'package:search_app/core/ui/color_styles.dart';
 
 class SearchWidget extends StatelessWidget {
   final void Function(String value) onValueChange;
@@ -8,23 +8,38 @@ class SearchWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      key: const Key('textField'),
-      onChanged: (text) => onValueChange(text),
-      decoration: InputDecoration(
-        hintText: 'Search',
-        prefixIcon: Icon(Icons.search),
-        contentPadding: EdgeInsets.symmetric(
-            vertical: 16, horizontal: 20),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: ColorStyles.searchBar, width: 1.5),
+    return Stack(
+      children: [
+        SizedBox(
+          height: 50,
+          child: TextField(
+            key: const Key('textField'),
+            onChanged: (text) => onValueChange(text),
+            decoration: InputDecoration(
+              hintText: 'Search',
+              hintStyle: TextStyle(color: ColorStyles.searchHintTextColor, fontSize: 20),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: ColorStyles.searchBar, width: 1.5),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: ColorStyles.searchBar, width: 1.5),
+              ),
+            ),
+          ),
         ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: ColorStyles.searchBarFocus, width: 1.5),
-        ),
-      ),
+        SizedBox(
+          height: 50,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Icon(Icons.search, color: ColorStyles.searchBar, size: 30,),
+              SizedBox(width: 10,)
+            ],
+          ),
+        )
+      ],
     );
   }
 }
