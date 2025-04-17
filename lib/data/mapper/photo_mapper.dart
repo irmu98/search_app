@@ -1,9 +1,9 @@
-import 'package:search_app/data/dto/image_dto.dart';
-import 'package:search_app/data/model/image.dart';
+import 'package:search_app/data/dto/photo_dto.dart';
+import 'package:search_app/data/model/photo.dart';
 
-extension ImageMapper on ImageDto {
-  Image toImage() {
-    return Image(
+extension PhotoMapper on PhotoDto {
+  Photo toPhoto() {
+    return Photo(
       id: (id ?? 0).toInt(),
       user: user ?? '',
       previewURL: previewURL ?? '',

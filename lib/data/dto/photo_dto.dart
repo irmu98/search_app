@@ -1,12 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'image_dto.freezed.dart';
-part 'image_dto.g.dart';
+part 'photo_dto.freezed.dart';
+part 'photo_dto.g.dart';
 
 // ignore_for_file: annotate_overrides
 @freezed
 @JsonSerializable()
-class ImageDto with _$ImageDto{
+class PhotoDto with _$PhotoDto{
   num? id;
   String? pageURL;
   String? type;
@@ -30,7 +30,7 @@ class ImageDto with _$ImageDto{
   String? user;
   String? userImageURL;
 
-  ImageDto({
+  PhotoDto({
     this.id,
     this.pageURL,
     this.type,
@@ -55,6 +55,6 @@ class ImageDto with _$ImageDto{
     this.userImageURL,
   });
 
-  factory ImageDto.fromJson(Map<String, dynamic> json) => _$ImageDtoFromJson(json);
-  Map<String, dynamic> toJson() => _$ImageDtoToJson(this);
+  factory PhotoDto.fromJson(Map<String, dynamic> json) => _$PhotoDtoFromJson(json);
+  Map<String, dynamic> toJson() => _$PhotoDtoToJson(this);
 }
