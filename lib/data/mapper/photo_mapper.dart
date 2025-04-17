@@ -1,5 +1,5 @@
 import 'package:search_app/data/dto/photo_dto.dart';
-import 'package:search_app/data/model/photo.dart';
+import 'package:search_app/domain/model/photo.dart';
 
 extension PhotoMapper on PhotoDto {
   Photo toPhoto() {
