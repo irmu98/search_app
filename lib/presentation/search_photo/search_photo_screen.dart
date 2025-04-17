@@ -13,10 +13,6 @@ class SearchPhotoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('이미지 검색 앱', style: TextStyle(fontSize: 30)),
-        centerTitle: true,
-      ),
       body: ListenableBuilder(
         listenable: viewModel..fetchPhotos(),
         builder: (context, snapshot) {
@@ -26,8 +22,7 @@ class SearchPhotoScreen extends StatelessWidget {
               children: [
                 SearchWidget(
                   onValueChange: (String value) {
-                    viewModel.updateSearchString(value);
-                    viewModel.searchRecipes();
+                    viewModel.searchBySearchWidget(value);
                   },
                 ),
                 SizedBox(height: 30),
