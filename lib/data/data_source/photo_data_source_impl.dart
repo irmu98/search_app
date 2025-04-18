@@ -17,9 +17,9 @@ class PhotoDataSourceImpl implements PhotoDataSource {
     return photoList.map((e) => PhotoDto.fromJson(e)).toList();
   }
 }
-//
+
 // void main() async {
-//   final ImageDataSource imageDataSource = ImageDataSourceImpl();
-//   final List<ImageDto> dtos = await imageDataSource.getImageDtos();
-//   print(dtos);
-// }
+// //   final ImageDataSource imageDataSource = ImageDataSourceImpl();
+// //   final List<ImageDto> dtos = await imageDataSource.getImageDtos();
+// //   print(dtos);
+// // }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:search_app/core/di/di_setup.dart';
 import 'package:search_app/domain/model/photo.dart';
 import 'package:search_app/domain/repository/photo_repository.dart';
 import 'package:search_app/domain/use_case/search_by_search_widget.dart';
