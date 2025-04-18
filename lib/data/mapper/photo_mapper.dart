@@ -8,7 +8,7 @@ extension PhotoMapper on PhotoDto {
       user: user ?? '',
       previewURL: previewURL ?? '',
       largeImageURL: largeImageURL ?? '',
-      tags: tags?.split(',').map((e) => e.trim()).toList() ?? [], // 스플릿 후 공백제거
+      tags: tags?.split(',').map((e) => e.trim()).toSet() ?? {}, // 스플릿 후 공백제거
     );
   }
 }

@@ -9,7 +9,7 @@ class Photo with _$Photo {
   final String user;
   final String previewURL;
   final String largeImageURL;
-  final List<String> tags;
+  final Set<String> tags;
 
   const Photo({
     required this.id,

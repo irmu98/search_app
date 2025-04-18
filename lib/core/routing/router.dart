@@ -29,12 +29,13 @@ final router = GoRouter(
       path: Routes.searchDetail,
       builder: (context, state) {
         final photoId = int.parse(state.pathParameters['photoId'] ?? '-1');
+        final value = state.pathParameters['value'] ?? '';
         return SearchDetailScreen(
           viewModel: SearchDetailViewModel(
             photoRepository: PhotoRepositoryImpl(
               photoDataSource: PhotoDataSourceImpl(),
             ),
-            photoId: photoId,
+            photoId: photoId, value: value,
           ),
         );
       },

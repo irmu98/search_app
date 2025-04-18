@@ -14,6 +14,6 @@ class SearchPhotoState with _$SearchPhotoState {
   const SearchPhotoState({
     this.searchPhotos = const [],
     this.isLoading = false,
-    this.searchString = '',
+    this.searchString = 'yellow+flowers',
   });
 }

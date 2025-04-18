@@ -9,49 +9,49 @@ class SearchDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: viewModel..fetchData(),
-      builder: (context, snapshot) {
-        if (viewModel.state.isLoading) {
-          return Center(child: CircularProgressIndicator());
-        }
-        return Scaffold(
-          body: Column(
-            children: [
-              Expanded(
-                child: CachedNetworkImage(
-                  imageUrl: viewModel.state.photo.largeImageURL,
-                  fit: BoxFit.cover,
-                  placeholder:
-                      (context, url) => Center(
-                        child: SizedBox(
-                          width: 50,
-                          height: 50,
-                          child: CircularProgressIndicator(),
+    return Scaffold(
+      body: ListenableBuilder(
+        listenable: viewModel..fetchData(),
+        builder: (context, snapshot) {
+          if (viewModel.state.isLoading) {
+            return Center(child: CircularProgressIndicator());
+          }
+          return Column(
+              children: [
+                Expanded(
+                  child: CachedNetworkImage(
+                    imageUrl: viewModel.state.photo.largeImageURL,
+                    fit: BoxFit.cover,
+                    placeholder:
+                        (context, url) => Center(
+                          child: SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: CircularProgressIndicator(),
+                          ),
                         ),
-                      ),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(30.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('user: ${viewModel.state.photo.user}'),
-                      SizedBox(height: 10),
-                      Wrap(
-                        children: [Text('tags: ${viewModel.state.photo.tags.join(', ')}')],
-                      ),
-                    ],
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
                 ),
-              ),
-            ],
-          ),
-        );
-      },
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(30.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('user: ${viewModel.state.photo.user}', style: TextStyle(fontSize: 20),),
+                        SizedBox(height: 10),
+                        Wrap(
+                          children: [Text('tags: ${viewModel.state.photo.tags.join(', ')}', style: TextStyle(fontSize: 20))],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+          );
+        },
+      ),
     );
   }
 }

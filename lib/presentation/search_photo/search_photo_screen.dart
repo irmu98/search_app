@@ -13,47 +13,51 @@ class SearchPhotoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListenableBuilder(
-        listenable: viewModel..fetchPhotos(),
-        builder: (context, snapshot) {
-          return Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: Column(
-              children: [
-                SearchWidget(
-                  onValueChange: (String value) {
-                    viewModel.searchBySearchWidget(value);
-                  },
-                ),
-                SizedBox(height: 30),
-                Expanded(
-                  child: GridView.count(
-                    crossAxisCount: 2,
-                    shrinkWrap: true,
-                    mainAxisSpacing: 30,
-                    crossAxisSpacing: 30,
-                    children:
-                        viewModel.state.searchPhotos
-                            .map(
-                              (photo) => SearchPhotoCard(
-                                photo: photo,
-                                onClick: (int photoId) {
-                                  context.push(
-                                    Routes.searchDetail.replaceAll(
-                                      ':photoId',
-                                      photoId.toString(),
-                                    ),
-                                  );
-                                },
-                              ),
-                            )
-                            .toList(),
+      body: SafeArea(
+        child: ListenableBuilder(
+          listenable: viewModel..fetchPhotos(),
+          builder: (context, snapshot) {
+            return Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Column(
+                children: [
+                  SearchWidget(
+                    onValueChange: (String value) {
+                      viewModel.updateSearchString(value);
+                      viewModel.searchBySearchWidget();
+                    },
                   ),
-                ),
-              ],
-            ),
-          );
-        },
+                  SizedBox(height: 30),
+                  Expanded(
+                    child: GridView.count(
+                      crossAxisCount: 2,
+                      shrinkWrap: true,
+                      mainAxisSpacing: 30,
+                      crossAxisSpacing: 30,
+                      children:
+                          viewModel.state.searchPhotos
+                              .map(
+                                (photo) => SearchPhotoCard(
+                                  photo: photo,
+                                  onClick: (int photoId) {
+                                    context.push(
+                                      Routes.searchDetail
+                                          .replaceAll(
+                                        ':photoId',
+                                        photoId.toString(),
+                                      ).replaceAll(':value', viewModel.state.searchString),
+                                    );
+                                  },
+                                ),
+                              )
+                              .toList(),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }

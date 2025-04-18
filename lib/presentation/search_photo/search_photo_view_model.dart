@@ -4,11 +4,11 @@ import 'package:search_app/domain/repository/photo_repository.dart';
 import 'package:search_app/domain/use_case/search_by_search_widget.dart';
 import 'package:search_app/presentation/search_photo/search_photo_state.dart';
 
+SearchPhotoState _state = const SearchPhotoState();
+
 class SearchPhotoViewModel with ChangeNotifier {
   final PhotoRepository _photoRepository;
   final SearchBySearchWidget _searchBySearchWidget;
-
-  SearchPhotoState _state = const SearchPhotoState();
 
   SearchPhotoState get state => _state;
 
@@ -21,14 +21,14 @@ class SearchPhotoViewModel with ChangeNotifier {
   }
 
   void fetchPhotos() async {
-    final List<Photo> photos = await _photoRepository.getPhotos();
+    final List<Photo> photos = await _photoRepository.getPhotos(state.searchString);
     _state = state.copyWith(searchPhotos: photos);
     _state = state.copyWith(isLoading: false);
     notifyListeners();
   }
 
-  void searchBySearchWidget(String value) async {
-    final List<Photo> searchPhotos = await _searchBySearchWidget.execute(value);
+  void searchBySearchWidget() async {
+    final List<Photo> searchPhotos = await _searchBySearchWidget.execute(state.searchString);
     _state = state.copyWith(searchPhotos: searchPhotos);
     _state = state.copyWith(isLoading: false);
     notifyListeners();

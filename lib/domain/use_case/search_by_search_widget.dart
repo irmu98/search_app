@@ -8,13 +8,7 @@ class SearchBySearchWidget {
     : _photoRepository = photoRepository;
 
   Future<List<Photo>> execute(String value) async {
-    final photos = await _photoRepository.getPhotos();
-    return photos
-        .where(
-          (photo) =>
-              photo.user.contains(value.toLowerCase()) ||
-              photo.tags.any((tag) => tag.contains(value.toLowerCase())),
-        )
-        .toList();
+    final photos = await _photoRepository.getPhotos(value);
+    return photos;
   }
 }

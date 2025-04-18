@@ -13,14 +13,14 @@ class PhotoRepositoryImpl implements PhotoRepository {
   }) : _photoDataSource = photoDataSource;
 
   @override
-  Future<List<Photo>> getPhotos() async {
-    final List<PhotoDto> photoDtos = await _photoDataSource.getPhotoDtos();
+  Future<List<Photo>> getPhotos(String value) async {
+    final List<PhotoDto> photoDtos = await _photoDataSource.getPhotoDtos(value);
     return photoDtos.map((e) => e.toPhoto()).toList();
   }
 
   @override
-  Future<Photo> getPhoto(int photoId) async {
-    final List<Photo> photos = await getPhotos();
+  Future<Photo> getPhoto(int photoId, String value) async {
+    final List<Photo> photos = await getPhotos(value);
     return photos.firstWhere((photo) => photo.id == photoId);
   }
 }

@@ -9,7 +9,8 @@ class PhotoDataSourceImpl implements PhotoDataSource {
   final String url = 'https://pixabay.com/api/?key=10711147-dc41758b93b263957026bdadb&q=yellow+flowers&image_type=photo';
 
   @override
-  Future<List<PhotoDto>> getPhotoDtos() async {
+  Future<List<PhotoDto>> getPhotoDtos(String value) async {
+    final String url = 'https://pixabay.com/api/?key=10711147-dc41758b93b263957026bdadb&q=$value&image_type=photo';
     final response = await http.get(Uri.parse(url));
     final json = await jsonDecode(utf8.decode(response.bodyBytes));
     final List<dynamic> photoList = json['hits'];
